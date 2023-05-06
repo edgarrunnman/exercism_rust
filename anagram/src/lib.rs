@@ -1,7 +1,23 @@
+use itertools;
+use itertools::Itertools;
 use std::collections::HashSet;
 
-pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&str]) -> HashSet<&'a str> {
-    unimplemented!(
-        "For the '{word}' word find anagrams among the following words: {possible_anagrams:?}"
-    );
+pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'a str> {
+    let normalized_word = normalize_string(word);
+    let mut set: HashSet<&str> = HashSet::new();
+
+    let valid_items: Vec<&str> = possible_anagrams
+        .iter()
+        .filter(|item| normalize_string(item).starts_with(&normalized_word))
+        .map(|item| *item)
+        .collect();
+
+    for anagram in valid_items {
+        set.insert(anagram);
+    }
+    set
+}
+
+fn normalize_string(input: &str) -> String {
+    input.chars().sorted().collect::<String>()
 }

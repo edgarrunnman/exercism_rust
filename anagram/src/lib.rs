@@ -8,7 +8,10 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'
 
     let valid_items: Vec<&str> = possible_anagrams
         .iter()
-        .filter(|item| normalize_string(item).starts_with(&normalized_word))
+        .filter(|item| {
+            normalize_string(item).eq_ignore_ascii_case(&normalized_word)
+                && item.to_lowercase() != word.to_lowercase()
+        })
         .map(|item| *item)
         .collect();
 
@@ -19,5 +22,5 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'
 }
 
 fn normalize_string(input: &str) -> String {
-    input.chars().sorted().collect::<String>()
+    input.to_lowercase().chars().sorted().collect()
 }

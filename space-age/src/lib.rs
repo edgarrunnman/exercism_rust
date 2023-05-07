@@ -1,12 +1,14 @@
-// The code below is a stub. Just enough to satisfy the compiler.
+//exercism download --exercise=space-age --track=rust The code below is a stub. Just enough to satisfy the compiler.
 // In order to pass the tests you can add-to or change any of this code.
 
 #[derive(Debug)]
-pub struct Duration;
+pub struct Duration {
+    age: u64,
+}
 
 impl From<u64> for Duration {
     fn from(s: u64) -> Self {
-        unimplemented!("s, measured in seconds: {s}")
+        Duration { age: s / 31557600 }
     }
 }
 

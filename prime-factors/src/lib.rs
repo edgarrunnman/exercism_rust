@@ -1,10 +1,16 @@
 pub fn factors(n: u64) -> Vec<u64> {
-    (2..=n)
-        .into_iter()
-        .filter(|i| is_prime(*i) || n % i == 0)
-        .collect()
+    let mut n = n;
+    let mut result = vec![];
+    for i in 2..=n {
+        if is_prime(i) {
+            while n % i == 0 {
+                n /= i;
+                result.push(i);
+            }
+        }
+    }
+    result
 }
-
 fn is_prime(n: u64) -> bool {
     if n == 2 || n == 3 {
         return true;

@@ -5,15 +5,12 @@ pub fn collatz(n: u64) -> Option<u64> {
             1 => Some(i),
             _ => match n % 2 {
                 0 => _collatz(n / 2, i + 1),
-                _ => match checked_mutation(n) {
-                    Some(n) => _collatz(n, i + 1),
-                    None => None,
-                },
+                _ => n
+                    .checked_mul(3)?
+                    .checked_add(1)
+                    .and_then(|n| _collatz(n, i + 1)),
             },
         }
-    }
-    fn checked_mutation(n: u64) -> Option<u64> {
-        n.checked_mul(3).and_then(|m| m.checked_add(1))
     }
     _collatz(n, 0)
 }

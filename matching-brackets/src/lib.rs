@@ -1,16 +1,24 @@
-use std::collections::HashMap;
-
 pub fn brackets_are_balanced(string: &str) -> bool {
-    let mut register = HashMap::from([('(', 0), ('[', 0), ('{', 0)]);
-    for c in string.chars() {
-        match c {
-            '(' => register[&'('] += 1,
-            ')' => register[&'('] -= 1,
-            '{' => register[&'{'] += 1,
-            '}' => register[&'}'] -= 1,
-            '[' => register[&'['] += 1,
-            ']' => register[&']'] -= 1,
+    let mut register = vec![];
+    for next in string.chars() {
+        match next {
+            ')' | ']' | '}' => {
+                if register.pop() != matching_bracket(next) {
+                    return false;
+                }
+            }
+            '(' | '[' | '{' => register.push(next),
+            _ => {}
         }
     }
-    register[&'('] == 0 && register[&'['] == 0 && register[&'{'] == 0
+    register.len() == 0
+}
+
+fn matching_bracket(bracket: char) -> Option<char> {
+    match bracket {
+        ')' => Some('('),
+        ']' => Some('['),
+        '}' => Some('{'),
+        _ => None,
+    }
 }

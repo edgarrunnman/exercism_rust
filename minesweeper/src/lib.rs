@@ -1,3 +1,13 @@
 pub fn annotate(minefield: &[&str]) -> Vec<String> {
-    unimplemented!("\nAnnotate each square of the given minefield with the number of mines that surround said square (blank if there are no surrounding mines):\n{minefield:#?}\n");
+    let foo = minefield
+        .into_iter()
+        .map(|line| {
+            line.chars()
+                .into_iter()
+                .map(|symbol| symbol as u8)
+                .collect::<Vec<u8>>()
+        })
+        .collect::<Vec<Vec<u8>>>();
+    println!("{:?}", foo);
+    Vec::new()
 }

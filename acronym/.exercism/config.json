@@ -1,19 +1,24 @@
 {
   "authors": [
-    "hekrause"
+    "gregcline"
   ],
   "contributors": [
-    "Baelyk",
+    "AndrewKvalheim",
+    "ClashTheBunny",
     "coriolinus",
     "cwhakes",
     "efx",
     "ErikSchierboom",
-    "LeBlue",
+    "IanWhitney",
+    "ktomsic",
     "lutostag",
-    "PaulT89",
+    "mkantor",
+    "navossoc",
+    "nfiles",
     "petertseng",
     "rofrol",
     "stringparser",
+    "thvdburgt",
     "xakon",
     "ZapAnton"
   ],
@@ -23,13 +28,13 @@
       "Cargo.toml"
     ],
     "test": [
-      "tests/diffie-hellman.rs"
+      "tests/acronym.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
-  "blurb": "Diffie-Hellman key exchange.",
-  "source": "Wikipedia, 1024 bit key from www.cryptopp.com/wiki.",
-  "source_url": "https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
+  "blurb": "Convert a long phrase to its acronym.",
+  "source": "Julien Vanier",
+  "source_url": "https://github.com/monkbroc"
 }
